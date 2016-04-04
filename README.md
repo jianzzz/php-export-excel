@@ -5,17 +5,16 @@
 
 ##English description  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Suppose you have the following requirements:  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your system involves a lot of form, you need to have a one-touch button to export all the data into Excel tables.
-One-click-export mainly related to three processes: ***data query***, ***data re-organization*** and ***Excel exports***.
-Suppose a two-dimensional array which stores the key - value relationship is the result of multi-table-joint queries (or single-table queries).  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your system involves a lot of form, you need to have a one-touch button to export all the data into Excel tables.One-click-export mainly related to three processes: ***data query***, ***data re-organization*** and ***Excel exports***.
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Suppose a two-dimensional array which stores the key - value relationship is the result of multi-table-joint queries (or single-table queries).  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Therefore, we need to solve these problem:  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.We need to ***map the column-key*** to its Chinese meaning when exporting Excel, because designers often use English or phoneticize to represent data.  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.We need to ***remove the surplus fields*** that we don't need to export.  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.We may ***reorganize the field contents*** with other information, and then export it.  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In addition, perhaps you want to directly ***set the number of rows that each Sheet table stores***.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In this project, an one-dimensional array ***$header*** stores the fields you want to export, its key => value stands for "DB Table Field => the Sheet table header." A two-dimensional array ***$content*** may represent multiple rows of the query data, $value = $content[$i][$key], $value will be exported if and only if $key is present in the array $header.*** $extraConten***t is a two-dimensional array, in principle, it has a consistent number with $content in the first dimension. For each row of the exported data, if $extraContent exist the corresponding key, not taken from the $content.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In this project, an one-dimensional array ***$header*** stores the fields you want to export, its key => value stands for "DB Table Field => the Sheet table header." A two-dimensional array ***$content*** may represent multiple rows of the query data, $value = $content[$i][$key], $value will be exported if and only if $key is present in the array $header. ***$extraContent*** is a two-dimensional array, in principle, it has a consistent number with $content in the first dimension. For each row of the exported data, if $extraContent exist the corresponding key, not taken from the $content.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In order to solve the "directly set the number of rows that each Sheet table stores" issue, we used https://github.com/mk-j/PHP_XLSXWriter source and extend it to export row by row instead the entire two-dimensional array for exported. Benefits of doing so is to easily determine whether the number of rows exceeds the limit of one's own Sheet table settings, and to create a new sheet form for storage when needed. This requires us to change function finalizeSheet() from private to public, which is defined in xlsxwriter.class.php file from https://github.com/mk-j/PHP_XLSXWriter.
 
@@ -139,8 +138,8 @@ Suppose a two-dimensional array which stores the key - value relationship is the
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;假设您有以下的需求：  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;您的系统上涉及了很多表单，您需要有一个按钮可以一键导出所有数据到Excel表中。  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一键导出主要涉及到三个过程：数据表查询、数据重新组织、导出Excel。  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;假设多表联合查询（或单表查询）的结果是二维array，array存储了键-值关系。  
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;假设多表联合查询（或单表查询）的结果是二维array，array存储了键-值关系。  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因此，我们需要解决的问题是：  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1、需要将键映射为中文，因为设计者通常使用英文或拼音来表示数据表字段，导出为Excel时我们需要将其转为中文意思。  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2、将不需要导出的多余字段去除。  
